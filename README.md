@@ -109,9 +109,9 @@ python verify.py
 ## ❓ 常见问题 (FAQ)
 - **Q1**: 验证图片中的轨迹与实际物体对不上，偏差很大？
 - A: 请按以下顺序检查：
-  -config/settings.py 中的相机内参是否准确（非常重要）。
-  -APRILTAG_SIZE 单位必须是米。
-  -检查 utils/geometry.py 中的四元数顺序是否与数据一致（默认处理为 [w, x, y, z] 转 [x, y, z, w]）。
+  config/settings.py 中的相机内参是否准确（非常重要）。
+  APRILTAG_SIZE 单位必须是米。
+  检查 utils/geometry.py 中的四元数顺序是否与数据一致（默认处理为 [w, x, y, z] 转 [x, y, z, w]）。
 
 - **Q2**: 报错 AttributeError: 'NoneType' object has no attribute 'corners'？
 - A: 这通常意味着在某些帧中没有检测到 AprilTag。请确保标定数据中 Tag 清晰可见，且没有被手遮挡。建议使用 --debug 模式查看具体哪一帧检测失败。
