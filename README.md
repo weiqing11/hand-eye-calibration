@@ -38,7 +38,7 @@ hand_eye_project/
 ├── requirements.txt         # 📦 依赖列表
 └── README.md                # 📖 说明文档
 ```
-##⚙️ 配置说明
+## ⚙️ 配置说明
 在使用前，请务必修改 config/settings.py 文件以适配您的硬件和数据路径：
 ```text
 # config/settings.py 示例
@@ -62,8 +62,8 @@ CAMERA_INTRINSICS_MATRIX = np.array([
     [0.0, 0.0, 1.0, 0],
 ])
 ```
-##🚀 快速开始
-#1. 执行标定
+## 🚀 快速开始
+### 1. 执行标定
 运行 calibrate.py 计算相机到基座的变换矩阵。程序会自动检测 AprilTag 并计算 Base 到 Camera 的变换。
 ```text
 # 标定双臂 (推荐)
@@ -76,7 +76,7 @@ python calibrate.py --arm left
 python calibrate.py --arm both --debug
 ```
 成功运行后，标定结果将保存至 results/calibration_matrix.json。
-#2. 执行验证
+### 2. 执行验证
 运行 verify.py，读取标定结果，并将机械臂的 3D 轨迹投影到 2D 相机图像上。
 ```text
 python verify.py
@@ -92,7 +92,7 @@ python verify.py
 右臂：显示为橙色 (Orange) 渐变轨迹。
 
 轨迹方向：颜色由浅（过去）到深（现在）。
-##📋 数据格式要求
+## 📋 数据格式要求
 本项目默认支持以下 HDF5 数据结构（常见于 Agilex/ALOHA 机器人数据）：
 
 图像数据: observations/images/cam_high (JPEG 压缩格式或原始数组)
@@ -106,7 +106,7 @@ python verify.py
 位姿格式: [x, y, z, qw, qx, qy, qz] (位置 + 四元数)
 
 注意: 如果您的 HDF5 键名不同，请修改 utils/data_loader.py 中的 load_pose_and_image 函数。 注意: 如果您的四元数格式是 [x, y, z, w]，请修改 utils/geometry.py 中的 pose_to_matrix 函数。
-##❓ 常见问题 (FAQ)
+## ❓ 常见问题 (FAQ)
 Q1: 验证图片中的轨迹与实际物体对不上，偏差很大？ A: 请按以下顺序检查：
 
 config/settings.py 中的相机内参是否准确（非常重要）。
@@ -118,5 +118,5 @@ APRILTAG_SIZE 单位必须是米。
 Q2: 报错 AttributeError: 'NoneType' object has no attribute 'corners'？ A: 这通常意味着在某些帧中没有检测到 AprilTag。请确保标定数据中 Tag 清晰可见，且没有被手遮挡。建议使用 --debug 模式查看具体哪一帧检测失败。
 
 Q3: 为什么生成的图片中没有轨迹线？ A: 可能是因为在当前时间窗口 (TRAJECTORY_WINDOW=60) 内，机械臂处于相机视野之外。尝试调整 verify.py 中的采样帧数或窗口大小。
-##📄 License
+## 📄 License
 此项目遵循 MIT 开源协议。
