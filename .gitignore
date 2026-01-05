@@ -1,0 +1,18 @@
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+
+# IDE 配置文件
+.vscode/
+.idea/
+
+# === 忽略大文件和数据集 ===
+*.hdf5
+*.h5
+
+# === 忽略输出结果 ===
+results/
+calibration_imgs/
+
+# === 忽略系统文件 ===
+.DS_Store
