@@ -87,11 +87,11 @@ python verify.py
 
 效果说明：
 
-左臂：显示为紫色 (Purple) 渐变轨迹。
+- **左臂**：显示为紫色 (Purple) 渐变轨迹。
 
-右臂：显示为橙色 (Orange) 渐变轨迹。
+- **右臂**：显示为橙色 (Orange) 渐变轨迹。
 
-轨迹方向：颜色由浅（过去）到深（现在）。
+- **轨迹方向**：颜色由浅（过去）到深（现在）。
 ## 📋 数据格式要求
 本项目默认支持以下 HDF5 数据结构（常见于 Agilex/ALOHA 机器人数据）：
 
@@ -99,15 +99,16 @@ python verify.py
 
 机械臂位姿:
 
-左臂键名: eef_pose/puppet_eef_pose/left_eef_4D
+- **左臂键名**: eef_pose/puppet_eef_pose/left_eef_4D
 
-右臂键名: eef_pose/puppet_eef_pose/right_eef_4D
+- **右臂键名**: eef_pose/puppet_eef_pose/right_eef_4D
 
-位姿格式: [x, y, z, qw, qx, qy, qz] (位置 + 四元数)
+- **位姿格式**: [x, y, z, qw, qx, qy, qz] (位置 + 四元数)
 
 注意: 如果您的 HDF5 键名不同，请修改 utils/data_loader.py 中的 load_pose_and_image 函数。 注意: 如果您的四元数格式是 [x, y, z, w]，请修改 utils/geometry.py 中的 pose_to_matrix 函数。
 ## ❓ 常见问题 (FAQ)
-Q1: 验证图片中的轨迹与实际物体对不上，偏差很大？ A: 请按以下顺序检查：
+- **Q1**: 验证图片中的轨迹与实际物体对不上，偏差很大？
+- A: 请按以下顺序检查：
 
 config/settings.py 中的相机内参是否准确（非常重要）。
 
@@ -115,8 +116,10 @@ APRILTAG_SIZE 单位必须是米。
 
 检查 utils/geometry.py 中的四元数顺序是否与数据一致（默认处理为 [w, x, y, z] 转 [x, y, z, w]）。
 
-Q2: 报错 AttributeError: 'NoneType' object has no attribute 'corners'？ A: 这通常意味着在某些帧中没有检测到 AprilTag。请确保标定数据中 Tag 清晰可见，且没有被手遮挡。建议使用 --debug 模式查看具体哪一帧检测失败。
+- **Q2**: 报错 AttributeError: 'NoneType' object has no attribute 'corners'？
+- A: 这通常意味着在某些帧中没有检测到 AprilTag。请确保标定数据中 Tag 清晰可见，且没有被手遮挡。建议使用 --debug 模式查看具体哪一帧检测失败。
 
-Q3: 为什么生成的图片中没有轨迹线？ A: 可能是因为在当前时间窗口 (TRAJECTORY_WINDOW=60) 内，机械臂处于相机视野之外。尝试调整 verify.py 中的采样帧数或窗口大小。
+- **Q3**: 为什么生成的图片中没有轨迹线？
+- A: 可能是因为在当前时间窗口 (TRAJECTORY_WINDOW=60) 内，机械臂处于相机视野之外。尝试调整 verify.py 中的采样帧数或窗口大小。
 ## 📄 License
 此项目遵循 MIT 开源协议。
